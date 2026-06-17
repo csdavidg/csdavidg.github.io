@@ -26,8 +26,8 @@ The microservice will be scaled horizontally into a Kubernetes cluster having fo
 
 In order to run several requests at the same time I created a JMeter test plan that will send 14 requests at the same time going through a CSV file that provides the data for each of them. This will be helpful to visualize the behavior of the service and the results on each scenario.
 
-> 📷 **Image placeholder:** JMeter test plan configuration
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/jmeter-config.png`, then replace this block with `![JMeter test plan configuration](/assets/images/jmeter-config.png)`)*
+![JMeter test plan configuration](/assets/images/jmeter-config.png)
+*JMeter test plan configuration*
 
 The JMeter test plan and the CSV file can be found under the `JMeter` folder in the repository.
 
@@ -58,16 +58,14 @@ After the test plan was completed successfully, the account balance is **40**. W
 
 In this case, several instances are querying the account balance from the database at the same time and consequently several instances are adding 20 to the same value. This behavior can be identified by checking the application logs.
 
-> 📷 **Image placeholder:** Application logs of two different instances
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/logs-no-locking.png`, then replace this block with `![Application logs](/assets/images/logs-no-locking.png)`)*
+![Application logs of two different instances](/assets/images/logs-no-locking.png)
+*Application logs of two different instances*
 
 The JMeter results show that multiple requests are using the same data.
 
-> 📷 **Image placeholder:** JMeter results — requests table
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/jmeter-results-1.png`)*
+![JMeter results — requests table](/assets/images/jmeter-results-1.png)
 
-> 📷 **Image placeholder:** JMeter results — summary
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/jmeter-results-2.png`)*
+![JMeter results — summary](/assets/images/jmeter-results-2.png)
 
 ## Second test — with optimistic and pessimistic locking
 
@@ -152,18 +150,18 @@ After the test plan was executed, **14 CREDITS (Deposits)** and **2 DEBITS (With
 
 This time the JMeter test plan shows that some DEBIT requests were not processed further.
 
-> 📷 **Image placeholder:** JMeter test plan — View results tree
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/jmeter-results-tree.png`, then replace this block with `![JMeter results tree](/assets/images/jmeter-results-tree.png)`)*
+![JMeter test plan — View results tree](/assets/images/jmeter-results-tree.png)
+*JMeter test plan — View results tree*
 
 The withdrawals use optimistic locking to ensure that the record's field version is tracked when updating the data. This ensures that the most up-to-date value is used, and in case any other instance has updated the data, an exception is thrown.
 
-> 📷 **Image placeholder:** Optimistic locking exception thrown
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/optimistic-lock-exception.png`, then replace this block with `![Optimistic locking exception](/assets/images/optimistic-lock-exception.png)`)*
+![Optimistic locking exception thrown](/assets/images/optimistic-lock-exception.png)
+*Optimistic locking exception thrown*
 
 The application logs show the behavior of the service using the locking techniques to prevent conflicts. It is worth noting the old and new values of the account balance and when the exception is thrown.
 
-> 📷 **Image placeholder:** Application logs from two instances
-> *(Save this screenshot from the LinkedIn article and place it at `assets/images/logs-with-locking.png`, then replace this block with `![Application logs with locking](/assets/images/logs-with-locking.png)`)*
+![Application logs from two instances](/assets/images/logs-with-locking.png)
+*Application logs from two instances*
 
 ## Conclusions
 
