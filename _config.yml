@@ -1,0 +1,12 @@
+title: "Cristian Sanchez"
+description: "Software engineer writing about Java, Spring Boot, and distributed systems."
+url: "https://csdavidg.github.io"
+theme: minima
+
+minima:
+  skin: classic
+
+show_excerpts: true
+
+plugins:
+  - jekyll-feed
